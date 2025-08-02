@@ -14,21 +14,24 @@ function App() {
     fetchTasks();
   }, []);
 
+  // Async function to fetch tasks from the API and update state
   const fetchTasks = async () => {
-    const res = await axios.get(API);
-    setTasks(res.data);
+    const res = await axios.get(API); // Perform GET request
+    setTasks(res.data); // Update tasks state with data from server
     console.log("fetching");
   };
 
+  // Async function to create a new task
   const createTask = async () => {
-    await axios.post(API, form);
-    setForm({ title: "", description: "" });
-    fetchTasks();
+    await axios.post(API, form); // Send form data to API via POST request
+    setForm({ title: "", description: "" }); // Reset form fields
+    fetchTasks(); // Refresh task list
   };
 
+  // Async function to delete a task by its ID
   const deleteTask = async (id) => {
-    await axios.delete(`${API}/${id}`);
-    fetchTasks();
+    await axios.delete(`${API}/${id}`); // DELETE request to remove task
+    fetchTasks(); // Refresh task list
   };
 
   return (
