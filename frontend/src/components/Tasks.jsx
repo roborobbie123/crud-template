@@ -1,4 +1,4 @@
-export default function Tasks({ tasks, deleteTask }) {
+export default function Tasks({ tasks, deleteTask, updateForm, updateTasks }) {
   return (
     <div className="p-4">
       {tasks && tasks.length > 0 ? (

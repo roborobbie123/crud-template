@@ -9,6 +9,7 @@ const API = "http://localhost:4000/tasks";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [form, setForm] = useState({ title: "", description: "" });
+  const [updateForm, setUpdateForm] = useState({ title: "", description: "" });
 
   useEffect(() => {
     fetchTasks();
@@ -28,6 +29,11 @@ function App() {
     fetchTasks(); // Refresh task list
   };
 
+  const updateTask = async () => {
+    await axios.put(`${API}/${id}`, updateForm);
+    fetchTasks();
+  };
+
   // Async function to delete a task by its ID
   const deleteTask = async (id) => {
     await axios.delete(`${API}/${id}`); // DELETE request to remove task
@@ -38,7 +44,7 @@ function App() {
     <div className="flex flex-col p-10">
       <h1 className="mb-5">Template App</h1>
       <NewTask createTask={createTask} setForm={setForm} form={form} />
-      <Tasks tasks={tasks} deleteTask={deleteTask} />
+      <Tasks tasks={tasks} deleteTask={deleteTask} updateTask={updateTask} updateForm={updateForm}/>
     </div>
   );
 }
