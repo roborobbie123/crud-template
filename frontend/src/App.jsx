@@ -29,7 +29,7 @@ function App() {
     fetchTasks(); // Refresh task list
   };
 
-  const updateTask = async () => {
+  const updateTask = async (id) => {
     await axios.put(`${API}/${id}`, updateForm);
     fetchTasks();
   };
@@ -44,7 +44,7 @@ function App() {
     <div className="flex flex-col p-10">
       <h1 className="mb-5">Template App</h1>
       <NewTask createTask={createTask} setForm={setForm} form={form} />
-      <Tasks tasks={tasks} deleteTask={deleteTask} updateTask={updateTask} updateForm={updateForm}/>
+      <Tasks tasks={tasks} deleteTask={deleteTask} updateTask={updateTask} updateForm={updateForm} setUpdateForm={setUpdateForm}/>
     </div>
   );
 }
